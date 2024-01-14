@@ -1,7 +1,7 @@
 <template>
     <h1>Tutorials</h1>
     <div v-if="tutorials" class="tutorial-container">
-        <InfoCard v-for="item in tutorials" :title="item.title" :description="item.description" />
+        <InfoCard v-for="item in tutorials" :title="item.title" :description="item.description" :id="item.order" />
     </div>
     <div v-else>
         <h2>
@@ -32,8 +32,6 @@ async function Connect() {
     for await (let tutorial of matchCursor) {
         ret.push(tutorial)
     }
-
-    console.log(ret)
 
     return ret;
 }
