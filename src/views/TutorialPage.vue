@@ -3,7 +3,9 @@
         <h1>Tutorial {{ tutorialData.order }}</h1>
         <div class="tablet-view">
             <h2>{{ tutorialData.title }}</h2>
-            <h3>{{ tutorialData.description }}</h3>
+            <h3>In this chapter: {{ tutorialData.description }}</h3>
+
+            <TutorialStep v-for="step in tutorialData.steps" :content="step.content" :type="step.type" />
         </div>
     </div>
     <div v-else>
@@ -13,6 +15,7 @@
 
 <script>
 const { MongoClient } = require('mongodb');
+import TutorialStep from "../components/TutorialStep.vue"
 
 const publicUser = {
     username: "public",
@@ -26,7 +29,7 @@ const tutorialsCollection = database.collection("Tutorials");
 
 async function Connect(id) {
     await client.connect().catch(err => console.log(err));
-    const result = await tutorialsCollection.findOne({ order: id });
+    const result = await tutorialsCollection.findOne({ order: Number(id) });
     client.close();
     return result;
 }
@@ -40,7 +43,8 @@ export default {
     },
     async mounted() {
         this.tutorialData = await Connect(this.id);
-    }
+    },
+    components: { TutorialStep }
 }
 </script>
 

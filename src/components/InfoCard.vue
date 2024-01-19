@@ -21,6 +21,9 @@ export default {
     background-color: bisque;
     margin: 10px;
     padding: 10px 10px 20px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .learn-link {

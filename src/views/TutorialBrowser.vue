@@ -33,6 +33,8 @@ async function Connect() {
         ret.push(tutorial)
     }
 
+    client.close();
+
     return ret;
 }
 

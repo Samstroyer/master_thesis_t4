@@ -52,6 +52,7 @@ li a:hover:not(.active) {
 
 li:last-child {
   float: right;
+  border-left: 1px solid white;
 }
 
 li:not(:last-child) {
