@@ -4,7 +4,10 @@
       <router-link :to="{ name: 'Home' }">Home</router-link>
     </li>
     <li>
-      <router-link :to="{ name: 'Tutorials' }">Tutorials</router-link>
+      <router-link :to="{ name: 'TutorialBrowser' }">Tutorials</router-link>
+    </li>
+    <li>
+      <router-link :to="{ name: 'Quickstart' }">Quickstart</router-link>
     </li>
     <li>
       <router-link :to="{ name: 'About' }">About</router-link>

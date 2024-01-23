@@ -3,6 +3,8 @@ import Home from "../views/Home.vue"
 import About from "../views/About.vue"
 import Tutorials from "../views/TutorialBrowser.vue"
 import TutorialPage from "../views/TutorialPage.vue"
+import RemotePage from "../views/RemotePage.vue"
+import CreateRepository from "../views/CreateRepository.vue"
 
 const routes = [
     {
@@ -17,14 +19,24 @@ const routes = [
     },
     {
         path: '/tutorials',
-        name: "Tutorials",
+        name: "TutorialBrowser",
         component: Tutorials
     },
     {
-        path: '/tutorials/:id',
+        path: '/tutorial/:id',
         name: "TutorialPage",
         component: TutorialPage,
         props: true
+    },
+    {
+        path: '/quickstart',
+        name: "Quickstart",
+        component: RemotePage,
+    },
+    {
+        path: '/create',
+        name: "CreateRepo",
+        component: CreateRepository,
     },
 ];
 
