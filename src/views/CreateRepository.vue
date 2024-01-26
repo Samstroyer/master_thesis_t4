@@ -1,14 +1,14 @@
 <template>
     <h1>Repository creator!</h1>
-    <Select :options="Methods" @change="(val) => selectedMethod = val">
-    </Select>
+    <Select :options="Methods" @change="(val) => selectedMethod = val" />
     <br />
-    <UserClone v-if="selectedMethod == 'Name'" @download="(GitHubUrl, FullPath) => createRepo(GitHubUrl, FullPath)">
-    </UserClone>
+    <UserClone v-if="selectedMethod == 'Name'" @download="(GitHubUrl, FullPath) => createRepo(GitHubUrl, FullPath)" />
+    <LinkClone v-if="selectedMethod == 'Link'" @download="(GitHubUrl, FullPath) => createRepo(GitHubUrl, FullPath)" />
 </template>
 
 <script setup>
 import UserClone from '@/components/UserClone.vue';
+import LinkClone from '@/components/LinkClone.vue';
 import Select from '@/components/Select.vue';
 import { exec } from "child_process"
 import { ref } from 'vue';
