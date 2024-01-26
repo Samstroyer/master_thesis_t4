@@ -1,41 +1,35 @@
 <template>
     <h1>Repository creator!</h1>
-    <div>
-        <p>Select a name for the repo</p>
-        <input type="text" v-model="repoName" placeholder="Enter name">
-        <p>The name will be: {{ actualName() }}</p>
-    </div>
-
-    <h1 @click="createRepo">Press here</h1>
+    <Select :options="Methods" @change="(val) => selectedMethod = val">
+    </Select>
+    <br />
+    <UserClone v-if="selectedMethod == 'Name'" @download="(GitHubUrl, FullPath) => createRepo(GitHubUrl, FullPath)">
+    </UserClone>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import UserClone from '@/components/UserClone.vue';
+import Select from '@/components/Select.vue';
 import { exec } from "child_process"
-import os from 'os';
+import { ref } from 'vue';
+import os from 'os'; // os.type() == Darwin for Mac
 
-const illegalCharacters = `#%&{}\\<>*?/$!'":@+\`|=`
+const Methods = ["Link", "Name"]
+const selectedMethod = ref("Link");
 
-const repoName = ref("")
-
-console.log(os.type())
-
-const actualName = () => {
-    return repoName.value.replace(" ", "_")//.replaceAll(illegalCharacters, ""); to be fixed.
-}
-
-async function createRepo() {
-    let testUrl = "https://github.com/Samstroyer/master_thesis_t4.git"
-
-    // Have a return here so that no accidental things can happen...
-    return;
-    exec("git clone https://github.com/Samstroyer/master_thesis_t4.git ~/Desktop/test_creation", (error, stdout, stderr) => {
+async function createRepo(url, path) {
+    // -v is not verbose and -q is just pointless
+    exec(`git clone "${url}" ${path}`, (error, stdout, stderr) => {
         if (error) {
             console.error(`exec error: ${error}`);
             return;
         }
     })
-
-
 }
 </script>
+
+<style scoped>
+select {
+    width: 10vw;
+}
+</style>
