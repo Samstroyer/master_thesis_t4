@@ -14,7 +14,7 @@ import { exec } from "child_process"
 import { ref } from 'vue';
 import os from 'os'; // os.type() == Darwin for Mac
 
-const Methods = ["Link", "Name"]
+const Methods = ["Link", "Name"];
 const selectedMethod = ref("Link");
 
 async function createRepo(url, path) {
