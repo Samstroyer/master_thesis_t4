@@ -1,18 +1,18 @@
-<template>
-    <select @change="$emit('change', selectedVal)" v-model="selectedVal">
-        <option v-for="txt in props.options" :value="txt">{{ txt }}</option>
-    </select>
-</template>
-
 <script setup>
 import { defineProps, defineEmits, ref } from 'vue';
 
-const selectedVal = ref("");
-
 const emit = defineEmits(['change'])
-
-const props = defineProps({
-    options: { type: Array, required: true }
-})
+/**
+ * @description Takes an array of options and displays them with configured attributes
+ * @expects { text: string, val: string, selected: bool }
+ */
+const props = defineProps(['opts']);
 
 </script>
+
+<template>
+    <select @change="$emit('change', $event.target.value)">
+        <option v-for="opt in props.opts" :selected="opt.selected">{{ opt.text }}
+        </option>
+    </select>
+</template>

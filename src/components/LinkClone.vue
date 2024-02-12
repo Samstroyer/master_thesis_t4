@@ -1,52 +1,28 @@
 <template>
-    <input type="text" v-model="project_link" placeholder="Link" class="upper" style="margin-bottom: 10px;">
+    <input type="text" v-model="urlData" placeholder="Link" style="margin: 30px 0px 25px 0px;">
     <br />
-    <button style="margin-right: 10px;" @click="selectFolder">Select folder</button>
-    <input type="text" v-model="project" placeholder="Enter project name">
-    <div class="summary-box">
-        <p>Downloading {{ fullURL() }}</p>
-        <p>At {{ fullPath() }}</p>
-        <button @click="$emit('download', fullURL(), fullPath())">Download!</button>
-        <div v-if="err != ''">{{ err }}</div>
-    </div>
+    <button style="margin-right: 10px;" @click="folderPrompt">Select folder</button>
+    <SummaryBox :path="folderData" :url="urlData" />
 </template>
 
 <script setup>
-import { remote } from 'electron';
 import { ref, defineEmits } from 'vue';
+import SummaryBox from './SummaryBox.vue';
+import { selectFolder, fullUrl } from '@/scripts/download.js'
 
 const emits = defineEmits(["download"]);
 
-const project_link = ref("");
-const path = ref("");
-const project = ref("");
-const err = ref("");
+const urlData = ref("");
+const folderData = ref("");
 
-const fullURL = () => {
-    return project_link.value;
-}
-
-const fullPath = () => {
-    return path.value + "/" + project.value;
-}
-
-function selectFolder() {
-    remote.dialog.showOpenDialog({
-        properties: [
-            'openDirectory'
-        ]
-    })
-        .then(res => path.value = res.filePaths[0])
-        .catch(e => {
-            err.value = e;
-        });
+async function folderPrompt() {
+    folderData.value = await selectFolder();
 }
 </script>
 
 <style scoped>
-input.upper {
+input {
     text-align: center;
-    margin-top: 50px;
 }
 
 .summary-box {

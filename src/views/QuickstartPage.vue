@@ -2,8 +2,8 @@
     <h1>Welcome to quickstart page!</h1>
 
     <div class="quickstart-option-container">
-        <router-link :to="{ name: 'CreateRepo' }" class="quickstart-option">Create Git repository</router-link>
-        <button class="quickstart-option">Clone existing from GitHub</button>
+        <router-link :to="{ name: 'CloneRepo' }" class="quickstart-option">Clone existing from GitHub</router-link>
+        <button class="quickstart-option">Create a new Git repository</button>
     </div>
 
     <router-link :to="{ name: 'TutorialBrowser' }" class="visit-tutorial-link">Or visit the tutorials page</router-link>

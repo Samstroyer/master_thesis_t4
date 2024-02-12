@@ -3,8 +3,8 @@ import Home from "../views/Home.vue"
 import About from "../views/About.vue"
 import Tutorials from "../views/TutorialBrowser.vue"
 import TutorialPage from "../views/TutorialPage.vue"
-import RemotePage from "../views/RemotePage.vue"
-import CreateRepository from "../views/CreateRepository.vue"
+import RemotePage from "../views/QuickstartPage.vue"
+import CloneRepository from "../views/CloneRepository.vue"
 
 const routes = [
     {
@@ -34,9 +34,9 @@ const routes = [
         component: RemotePage,
     },
     {
-        path: '/create',
-        name: "CreateRepo",
-        component: CreateRepository,
+        path: '/clone',
+        name: "CloneRepo",
+        component: CloneRepository,
     },
 ];
 
