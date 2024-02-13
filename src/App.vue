@@ -10,6 +10,9 @@
       <router-link :to="{ name: 'Quickstart' }">Quickstart</router-link>
     </li>
     <li>
+      <router-link :to="{ name: 'ExtraTools' }">Extra</router-link>
+    </li>
+    <li>
       <router-link :to="{ name: 'About' }">About</router-link>
     </li>
   </ul>

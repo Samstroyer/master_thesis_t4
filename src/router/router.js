@@ -6,6 +6,7 @@ import TutorialPage from "../views/TutorialPage.vue"
 import RemotePage from "../views/QuickstartPage.vue"
 import CloneRepository from "../views/CloneRepository.vue"
 import InitRepository from "../views/InitRepository.vue"
+import ExtraTools from "../views/ExtraTools.vue"
 
 const routes = [
     {
@@ -38,6 +39,11 @@ const routes = [
         path: '/clone',
         name: "CloneRepo",
         component: CloneRepository,
+    },
+    {
+        path: '/tools',
+        name: "ExtraTools",
+        component: ExtraTools,
     },
     {
         path: '/init',
