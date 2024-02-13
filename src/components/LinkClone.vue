@@ -8,7 +8,7 @@
 <script setup>
 import { ref, defineEmits } from 'vue';
 import SummaryBox from './SummaryBox.vue';
-import { selectFolder, fullUrl } from '@/scripts/download.js'
+import { selectFolder } from '@/scripts/download.js'
 
 const emits = defineEmits(["download"]);
 
