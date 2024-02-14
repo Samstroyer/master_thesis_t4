@@ -4,8 +4,8 @@ import About from "../views/About.vue"
 import Tutorials from "../views/TutorialBrowser.vue"
 import TutorialPage from "../views/TutorialPage.vue"
 import RemotePage from "../views/QuickstartPage.vue"
-import CloneRepository from "../views/CloneRepository.vue"
-import InitRepository from "../views/InitRepository.vue"
+import CloneRepository from "../tools/views/CloneRepository.vue"
+import InitRepository from "../tools/views/InitRepository.vue"
 import ExtraTools from "../views/ExtraTools.vue"
 
 const routes = [

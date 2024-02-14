@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { fullURL, selectFolder } from "@/scripts/download.js"
+import { fullURL, selectFolder } from "@/tools/scripts/download.js"
 import SummaryBox from './SummaryBox.vue';
 
 const username = ref("");

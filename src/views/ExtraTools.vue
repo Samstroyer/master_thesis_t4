@@ -28,7 +28,7 @@ const opentool = (tool) => {
 </script>
 
 <template>
-    <h1>More tools:</h1>
+    <h1>Tools:</h1>
     <div class="container">
         <div v-for="tool in tools" class="tool">
             <h2>{{ tool.name }}</h2>

@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps } from 'vue';
-import { createRepo } from '@/scripts/download.js'
+import { createRepo } from '@/tools/scripts/download.js'
 
 const props = defineProps(['url', 'path']);
 

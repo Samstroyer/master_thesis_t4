@@ -1,6 +1,6 @@
 <script setup>
-import { selectFolder } from '@/scripts/download';
-import { initRepo } from "@/scripts/repo-actions"
+import { selectFolder } from '@/tools/scripts/download';
+import { initRepo } from "@/tools/scripts/repo-actions"
 import { ref } from 'vue';
 
 const path = ref("");
