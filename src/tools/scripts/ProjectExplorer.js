@@ -1,55 +1,46 @@
 // This file will contain the commands 
 // needed in project explorer
 
-import { spawn } from "child_process"
+import { exec, execSync } from "child_process"
 
-function GetBranches(url) {
-    const cp = spawn('git branch -v', {
-        shell: true
+function GetBranches(ret) {
+    exec('git branch -v', (err, stdout, stderr) => {
+        let arr = stdout.split("\n");
+        arr.forEach(branch => ret.push(branch))
     })
-
-    return cp.stdout;
 }
 
-function GetTags(url) {
-    const cp = spawn('git tag -v', {
-        shell: true
+function GetTags(ret) {
+    exec('git tag', (err, stdout, stderr) => {
+        let arr = stdout.split("\n");
+        arr.forEach(tag => ret.push(tag))
     })
-
-    return cp.stdout;
 }
 
-function GetCommits(url) {
-    const cp = spawn('git log -v', {
-        shell: true
+function GetCommits(ret) {
+    exec('git log -v', (err, stdout, stderr) => {
+        // Split every new commit 
+        stdout.split("commit")
+            // Add back the commit text...
+            .map(commit => "commit" + commit)
+            // Remove the first element as it is empty
+            .toSpliced(0, 1)
+            // Foreach commit, push it to the page
+            .forEach(commit => ret.push(commit));
     })
-
-    return cp.stdout;
 }
 
 /**
- * @description Returns wanted data from a GitHub project
- * @param {boolean} branches 
- * @param {boolean} tags 
- * @param {{commits: boolean, messages?: boolean, author?: boolean}} commits 
+ * @description Returns the data from a repo to the selected arrays in the parameter
+ * @param {[]} branches 
+ * @param {[]} tags 
+ * @param {[]} commits 
  */
-export function GetData(branches, tags, commits, url) {
-    let cp = spawn('git rev-parse --git-dir', {
-        shell: true,
+export function GetData(branches, tags, commits) {
 
-    })
+    // Check if the repo exists in future - error checking
 
-    cp.stdout.on('data', (data) => { console.log(data.toString()) })
-
-    if (branches) {
-        GetBranches(url);
-    }
-
-    if (tags) {
-        GetTags(url);
-    }
-
-    if (commits) {
-        GetCommits(url);
-    }
+    GetBranches(branches);
+    GetCommits(commits);
+    GetTags(tags);
 }

@@ -1,8 +1,18 @@
 <script setup>
 import { GetData } from '../scripts/ProjectExplorer';
+import { ref } from "vue";
 
+const commitInfo = ref([]);
+const branchInfo = ref([]);
+const tagInfo = ref([]);
 
-const getInfo = () => GetData();
+const getInfo = () => {
+    branchInfo.value = [];
+    commitInfo.value = [];
+    tagInfo.value = [];
+
+    GetData(branchInfo.value, tagInfo.value, commitInfo.value)
+};
 
 </script>
 
@@ -31,6 +41,27 @@ const getInfo = () => GetData();
             <h1>Tool</h1>
             <input type="text" placeholder="GitHub Link">
             <button style="margin-left: 5px;" @click="getInfo">Get data!</button>
+            <br />
+            <div class="datagrid">
+                <div>
+                    <h2>Tags</h2>
+                    <div v-for="tag in tagInfo">
+                        <h1>{{ tag }}</h1>
+                    </div>
+                </div>
+                <div>
+                    <h2>Branches</h2>
+                    <div v-for="branch in branchInfo">
+                        <h1>{{ branch }}</h1>
+                    </div>
+                </div>
+                <div>
+                    <h2>Commits</h2>
+                    <div v-for="commit in commitInfo">
+                        <h1>{{ commit }}</h1>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -47,6 +78,17 @@ ul {
 li {
     float: left;
     margin: 5px 5px;
+    border: none;
+}
+
+.datagrid {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+}
+
+.datagrid h1 {
+    word-wrap: break-word;
+    font-size: small;
 }
 
 .page {
