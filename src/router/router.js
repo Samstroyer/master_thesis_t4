@@ -7,6 +7,7 @@ import RemotePage from "../views/QuickstartPage.vue"
 import CloneRepository from "../tools/views/CloneRepository.vue"
 import InitRepository from "../tools/views/InitRepository.vue"
 import ExtraTools from "../views/ExtraTools.vue"
+import ProjectExplorer from "../tools/views/ProjectExplorer.vue"
 
 const routes = [
     {
@@ -49,6 +50,11 @@ const routes = [
         path: '/init',
         name: "InitRepo",
         component: InitRepository,
+    },
+    {
+        path: '/project-explorer',
+        name: "Explorer",
+        component: ProjectExplorer,
     },
 ];
 

@@ -5,24 +5,24 @@ const tools = [
         name: "Version tagger",
         description: "Tags commits, can tag things like 'V 1.0', 'BETA'",
         status: "not implemented yet",
+        path: "",
     },
     {
         name: "Bare power",
         description: "Shows the power of bare repos and working with multiple branches simultaniously!",
         status: "not implemented yet",
+        path: "",
     },
     {
         name: "Project explorer",
         description: "Explores branches and data about repositories",
-        status: "not implemented yet",
+        status: "v0",
+        path: "/project-explorer",
     },
 ]
 
-const opentool = (tool) => {
-    console.log(tool.name);
-    if (tool.status == "not implemented yet") {
-        alert(tool.status)
-    }
+const notReady = (tool) => {
+    alert(tool.status)
 }
 
 </script>
@@ -33,7 +33,7 @@ const opentool = (tool) => {
         <div v-for="tool in tools" class="tool">
             <h2>{{ tool.name }}</h2>
             <h4>{{ tool.description }}</h4>
-            <button @click="opentool(tool)">Go to tool!</button>
+            <a :href="tool.path" class="button">Go to tool!</a>
         </div>
     </div>
     <h3>With the help of drive and my liking to learn, I have created some extra tools.</h3>
@@ -66,11 +66,12 @@ li {
     align-items: flex-end;
 }
 
-.tool button {
+.tool a {
     margin: 5px 18%;
     border-radius: 50%;
     padding: 1%;
     background-color: #02ff8d;
+    font-size: medium;
 }
 
 .tool h2 {
