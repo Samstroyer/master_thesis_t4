@@ -1,6 +1,7 @@
 // This file will contain the commands 
 // needed in project explorer
 
+import { downloadInternetURLToTempDir } from "../scripts/temp_dir"
 import { exec, execSync } from "child_process"
 
 function GetBranches(ret) {
@@ -36,11 +37,22 @@ function GetCommits(ret) {
  * @param {[]} tags 
  * @param {[]} commits 
  */
-export function GetData(branches, tags, commits) {
+export function GetData(branches, tags, commits, errorbox, url) {
+    // Try seeing if .git exists, then we can safely call the following commands
+    try {
+        // Maybe have a timeout property set here? 
+        // Could lead to death / infinite loops because why wouldn't it?
+        let output = execSync('git rev-parse --git-dir');
 
-    // Check if the repo exists in future - error checking
+        errorbox.push(downloadInternetURLToTempDir(url));
 
-    GetBranches(branches);
-    GetCommits(commits);
-    GetTags(tags);
+        GetBranches(branches);
+        GetCommits(commits);
+        GetTags(tags);
+    } catch (e) {
+        errorbox.push("Error! Possible problems:");
+        errorbox.push("- Check that a folder is selected");
+        errorbox.push("- Check that git exists in folder");
+        errorbox.push(e);
+    }
 }

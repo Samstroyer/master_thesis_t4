@@ -5,13 +5,17 @@ import { ref } from "vue";
 const commitInfo = ref([]);
 const branchInfo = ref([]);
 const tagInfo = ref([]);
+const urlInp = ref("");
+
+const errorBox = ref([]);
 
 const getInfo = () => {
+    errorBox.value = [];
     branchInfo.value = [];
     commitInfo.value = [];
     tagInfo.value = [];
 
-    GetData(branchInfo.value, tagInfo.value, commitInfo.value)
+    GetData(branchInfo.value, tagInfo.value, commitInfo.value, errorBox.value, urlInp.value)
 };
 
 </script>
@@ -39,8 +43,10 @@ const getInfo = () => {
         </div>
         <div class="tool">
             <h1>Tool</h1>
-            <input type="text" placeholder="GitHub Link">
-            <button style="margin-left: 5px;" @click="getInfo">Get data!</button>
+            <input type="text" placeholder="GitHub Link" v-model="urlInp">
+            <button style="margin-left: 5px;" @click="getInfo" :disabled="urlInp.length < 'github.com/'.length">Get
+                data!</button>
+            <div v-for="line in errorBox">{{ line }}</div>
             <br />
             <div class="datagrid">
                 <div>
