@@ -4,22 +4,22 @@
 import { downloadInternetURLToTempDir } from "../scripts/temp_dir"
 import { exec, execSync } from "child_process"
 
-function GetBranches(ret) {
-    exec('git branch -v', (err, stdout, stderr) => {
+function GetBranches(ret, cwd) {
+    exec('git branch -v', { cwd: cwd }, (err, stdout, stderr) => {
         let arr = stdout.split("\n");
         arr.forEach(branch => ret.push(branch))
     })
 }
 
-function GetTags(ret) {
-    exec('git tag', (err, stdout, stderr) => {
+function GetTags(ret, cwd) {
+    exec('git tag', { cwd: cwd }, (err, stdout, stderr) => {
         let arr = stdout.split("\n");
         arr.forEach(tag => ret.push(tag))
     })
 }
 
-function GetCommits(ret) {
-    exec('git log -v', (err, stdout, stderr) => {
+function GetCommits(ret, cwd) {
+    exec('git log -v', { cwd: cwd }, (err, stdout, stderr) => {
         // Split every new commit 
         stdout.split("commit")
             // Add back the commit text...
@@ -38,17 +38,22 @@ function GetCommits(ret) {
  * @param {[]} commits 
  */
 export function GetData(branches, tags, commits, errorbox, url) {
-    // Try seeing if .git exists, then we can safely call the following commands
     try {
-        // Maybe have a timeout property set here? 
-        // Could lead to death / infinite loops because why wouldn't it?
-        let output = execSync('git rev-parse --git-dir');
+        // Try seeing if .git exists, then we can safely call the following commands
+        execSync('git rev-parse --git-dir');
 
-        errorbox.push(downloadInternetURLToTempDir(url));
+        let data = downloadInternetURLToTempDir(url);
 
-        GetBranches(branches);
-        GetCommits(commits);
-        GetTags(tags);
+        if (data.note == 'Item already exists!') {
+            errorbox.push(data.note);
+        } else if (data.error) {
+            errorbox.push(data.error);
+            return;
+        }
+
+        GetBranches(branches, data.cwd);
+        GetCommits(commits, data.cwd);
+        GetTags(tags, data.cwd);
     } catch (e) {
         errorbox.push("Error! Possible problems:");
         errorbox.push("- Check that a folder is selected");
