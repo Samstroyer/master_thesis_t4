@@ -31,7 +31,6 @@ const getInfo = () => {
             <h3>
                 Things you can see with this tool:
             </h3>
-            <h4>(Only supports local for now!)</h4>
             <!-- Make these links to tutorials later! -->
             <menu>
                 <li>Branches</li>
