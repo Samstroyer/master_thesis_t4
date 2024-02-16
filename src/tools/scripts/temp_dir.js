@@ -32,7 +32,7 @@ export function downloadInternetURLToTempDir(url) {
     if (!url.includes("github")) return { error: "Unsuported link! Must contain 'github'", cwd: null };
 
     try {
-        execSync(`git clone ${url} ${tempDir() + newHash}`);
+        execSync(`git clone ${url} ${tempDir() + newHash} --bare`);
 
         if (type == 'Darwin') {
             let repoName = execSync('git ls-remote --get-url | xargs basename', {

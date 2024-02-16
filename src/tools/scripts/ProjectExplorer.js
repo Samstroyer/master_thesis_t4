@@ -39,9 +39,6 @@ function GetCommits(ret, cwd) {
  */
 export function GetData(branches, tags, commits, errorbox, url) {
     try {
-        // Try seeing if .git exists, then we can safely call the following commands
-        execSync('git rev-parse --git-dir');
-
         let data = downloadInternetURLToTempDir(url);
 
         if (data.note == 'Item already exists!') {
