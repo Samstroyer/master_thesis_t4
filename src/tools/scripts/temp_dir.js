@@ -18,7 +18,7 @@ const KEY = "myKey";
 /**
  * @description Downloads a repo to temp dir to have it on system temporarily. 
  * @param {String} url 
- * @returns {{error: String, cwd: String, note: String?}} Returns error and cwd in an object
+ * @returns {{error: string, cwd: string, note: string?}} Returns error and cwd in an object
  */
 export function downloadInternetURLToTempDir(url) {
     let newHash = createHash("sha256", KEY).update(url).digest('hex');

@@ -22,7 +22,7 @@ const getInfo = () => {
 
 <template>
     <div class="page">
-        <div class="description" style="border: 2px solid blue;">
+        <div class="description" style="border: 2px solid blue; height: fit-content;">
             <h1>What is this?</h1>
             <h3 style="background-color: aquamarine; border-radius: 15%; padding: 5px;">
                 Project explorer was created to easily see the branches in a repository and other data in it.
@@ -98,7 +98,7 @@ li {
 
 .page {
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 25%  75%;
 }
 
 .page h1 {
