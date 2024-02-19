@@ -13,10 +13,11 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1024,
+    height: 640,
     webPreferences: {
-      
+      enableRemoteModule: true,
+
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
@@ -57,7 +58,7 @@ app.on('ready', async () => {
   if (isDevelopment && !process.env.IS_TEST) {
     // Install Vue Devtools
     try {
-      await installExtension(VUEJS3_DEVTOOLS)
+      await installExtension('nhdogjmejiglipccpnnnanhbledajbpd'); // The actual app ID as it changes sometimes apparently...
     } catch (e) {
       console.error('Vue Devtools failed to install:', e.toString())
     }
