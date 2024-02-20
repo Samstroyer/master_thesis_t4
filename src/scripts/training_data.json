@@ -1,17 +1,36 @@
 {
     "data": [
         {
+            "linking_title": "Git fundamendals",
             "difficulty": "0",
-            "question": "Test",
-            "stage": "0",
+            "question": "What is git considered as?",
             "answers": [
                 {
-                    "correct": 0,
-                    "prompt": "wro"
+                    "correct": 1,
+                    "prompt": "Version handling tool"
                 },
                 {
+                    "correct": 0,
+                    "prompt": "Exclusive GitHub tool"
+                }
+            ]
+        },
+        {
+            "linking_title": "Commits and staging",
+            "difficulty": "0",
+            "question": "What is a commit?",
+            "answers": [
+                {
                     "correct": 1,
-                    "prompt": "corr"
+                    "prompt": "A way to track versions of the code"
+                },
+                {
+                    "correct": 0,
+                    "prompt": "Exclusive GitHub tool"
+                },
+                {
+                    "correct": 0,
+                    "prompt": "test"
                 }
             ]
         }

@@ -3,33 +3,44 @@ import { defineProps, ref } from 'vue';
 import Select from './Select.vue';
 
 const props = defineProps(["question", "answers"])
-const selected = ref(props.answers[0].prompt);
+const selectedIndex = ref(0);
 
 function checkCorrect() {
-    const index = props.answers.findIndex(val => val.prompt == selected.value)
-    
-    if(props.answers[index].correct) {
+    console.log(selectedIndex.value)
+    if (props.answers[selectedIndex.value].correct) {
         return "correct"
     } else {
         return "wrong"
+    }
+}
+
+function shortPrompt(prompt) {
+    if (prompt.length < 8) { return prompt }
+    else {
+        return Array.from(prompt).splice(0, 8).join("")
     }
 }
 </script>
 
 <template>
     <div class="container" :class="checkCorrect()">
-        <h1>{{ props.question }}</h1>
-        <p>Chosen: {{ selected }}</p>
-        <Select :opts="answers.map(a => { return { text: a.prompt } })" @change="(val) => selected = val" />
+        <h2>{{ props.question }}</h2>
+        <p>Chosen: {{ selectedIndex }}</p>
+        <Select :opts="answers.map((a, i) => { return { text: ++i + ' ' + shortPrompt(a.prompt) } })"
+            @change="(val) => console.log(val)" />
     </div>
 </template>
 
 <style scoped>
 .correct {
-    background-color: green;
+    background-color: rgb(71, 255, 71);
 }
 
 .wrong {
-    background-color: red;
+    background-color: rgb(255, 109, 109);
+}
+
+.container {
+    width: 24%;
 }
 </style>

@@ -7,9 +7,7 @@ const data = training_data.data;
 
 <template>
     <div class="card-container">
-        <div class="card" v-for="card in data">
-            <TrainingCard :question="card.question" :answers="card.answers" />
-        </div>
+        <TrainingCard v-for="card in data" :question="card.question" :answers="card.answers" />
     </div>
 </template>
 
@@ -17,9 +15,5 @@ const data = training_data.data;
 .card-container {
     display: flex;
     justify-content: center;
-}
-
-.card {
-    width: 24%;
 }
 </style>
