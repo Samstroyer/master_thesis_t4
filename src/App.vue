@@ -14,6 +14,9 @@
       <router-link :to="{ name: 'Quickstart' }">Quickstart</router-link>
     </li>
     <li>
+      <router-link :to="{ name: 'Training' }">Training</router-link>
+    </li>
+    <li>
       <router-link :to="{ name: 'ExtraTools' }">Tools</router-link>
     </li>
     <li>

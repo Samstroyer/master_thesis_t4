@@ -8,6 +8,7 @@ import CloneRepository from "../tools/views/CloneRepository.vue"
 import InitRepository from "../tools/views/InitRepository.vue"
 import ExtraTools from "../views/ExtraTools.vue"
 import ProjectExplorer from "../tools/views/ProjectExplorer.vue"
+import TrainingPage from "../views/TrainingPage.vue"
 
 const routes = [
     {
@@ -55,6 +56,11 @@ const routes = [
         path: '/project-explorer',
         name: "Explorer",
         component: ProjectExplorer,
+    },
+    {
+        path: '/training',
+        name: "Training",
+        component: TrainingPage,
     },
 ];
 
