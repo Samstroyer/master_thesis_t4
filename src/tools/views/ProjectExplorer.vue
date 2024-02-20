@@ -18,6 +18,14 @@ const getInfo = () => {
     GetData(branchInfo.value, tagInfo.value, commitInfo.value, errorBox.value, urlInp.value)
 };
 
+/**
+ * @description extracts the name of the branch
+ * @param {string} branch 
+ */
+function getBranchName(branch) {
+    const match = branch.match(/[A-z1-9]*/g)[2];
+    return match;
+} 
 </script>
 
 <template>
@@ -50,19 +58,20 @@ const getInfo = () => {
             <div class="datagrid">
                 <div>
                     <h2>Tags</h2>
-                    <div v-for="tag in tagInfo">
+                    <div v-for="tag in tagInfo" style="background-color: antiquewhite;">
                         <h1>{{ tag }}</h1>
                     </div>
                 </div>
                 <div>
                     <h2>Branches</h2>
-                    <div v-for="branch in branchInfo">
-                        <h1>{{ branch }}</h1>
+                    <div v-for="branch in branchInfo"
+                        style="background-color: antiquewhite;">
+                        <h1 :title="'Clone ' + getBranchName(branch) + ' to desktop'">{{ branch }}</h1>
                     </div>
                 </div>
                 <div>
                     <h2>Commits</h2>
-                    <div v-for="commit in commitInfo">
+                    <div v-for="commit in commitInfo" style="background-color: antiquewhite;">
                         <h1>{{ commit }}</h1>
                     </div>
                 </div>
@@ -98,7 +107,7 @@ li {
 
 .page {
     display: grid;
-    grid-template-columns: 25%  75%;
+    grid-template-columns: 25% 75%;
 }
 
 .page h1 {

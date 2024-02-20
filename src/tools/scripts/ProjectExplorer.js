@@ -6,15 +6,15 @@ import { exec, execSync } from "child_process"
 
 function GetBranches(ret, cwd) {
     exec('git branch -v', { cwd: cwd }, (err, stdout, stderr) => {
-        let arr = stdout.split("\n");
-        arr.forEach(branch => ret.push(branch))
+        let arr = stdout.split("\n")
+            .forEach(branch => ret.push(branch))
     })
 }
 
 function GetTags(ret, cwd) {
     exec('git tag', { cwd: cwd }, (err, stdout, stderr) => {
-        let arr = stdout.split("\n");
-        arr.forEach(tag => ret.push(tag))
+        let arr = stdout.split("\n")
+            .forEach(tag => ret.push(tag))
     })
 }
 
@@ -24,7 +24,7 @@ function GetCommits(ret, cwd) {
         stdout.split("commit")
             // Add back the commit text...
             .map(commit => "commit" + commit)
-            // Remove the first element as it is empty
+            // Remove the first and last element as they are empty 
             .toSpliced(0, 1)
             // Foreach commit, push it to the page
             .forEach(commit => ret.push(commit));
